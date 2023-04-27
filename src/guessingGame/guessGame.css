@@ -1,0 +1,45 @@
+.guess-game-container {
+max-width: 400px;
+margin: auto;
+text-align: center;
+}
+
+.guess-game-title {
+font-size: 2rem;
+margin-bottom: 1rem;
+}
+
+.guess-game-instructions {
+font-size: 1.2rem;
+margin-bottom: 0.5rem;
+}
+
+.guess-game-input {
+font-size: 1.2rem;
+padding: 0.5rem;
+margin-bottom: 0.5rem;
+border-radius: 5px;
+border: 1px solid black;
+}
+
+.guess-game-button {
+font-size: 1.2rem;
+padding: 0.5rem 1rem;
+margin-top: 0.5rem;
+border-radius: 5px;
+border: none;
+background-color: #4caf50;
+color: white;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.guess-game-button:hover {
+background-color: #3e8e41;
+}
+
+.guess-game-message {
+font-size: 1.2rem;
+margin-top: 0.5rem;
+font-weight: bold;
+}
