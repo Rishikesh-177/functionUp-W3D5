@@ -15,13 +15,13 @@ const handleGuess = () => {
   const numGuess = parseInt(Guess);
 
     if (numGuess < luckyNumber) {
-        setResult("You guessed a samller number. Try again");
+      alert ("You guessed a samller number. Try again");
          } else if (numGuess > luckyNumber) {
-            setResult("You guessed a bigger number. Try again");
+           alert ("You guessed a bigger number. Try again");
          } else {
             const attempts = numAttempts + 1;
             setNumAttempts(attempts);
-            setResult(`congratulations! You guessed the right number in ${attempts} attempts.`);
+         setResult (`congratulations! You guessed the right number in ${setNumAttempts} attempts.`);
          }
          setGuess("");
 };
