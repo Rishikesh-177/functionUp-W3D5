@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useRef, useEffect } from 'react';
+import React from 'react';
 
 function App() {
+  const [imageUrl, setImageUrl] = useState('');
+  const imageRef = useRef(null);
+
+  const handleButtonClick = () => {
+    const randomImageUrl = `https://picsum.photos/800/600/?random=${Math.floor (Math.random() * 1000
+    )}`;
+    setImageUrl(randomImageUrl);
+  };
+
+  // Update the image source when the imageUrl state changes
+  useEffect(() => {
+    if (imageUrl) {
+      imageRef.current.src = imageUrl;
+    }
+  }, [imageUrl]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img ref={imageRef} alt="random" />
+      <button onClick={handleButtonClick}>Change Image</button>
     </div>
   );
 }
