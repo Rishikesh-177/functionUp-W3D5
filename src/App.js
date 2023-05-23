@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import axios from "axios";
 import './App.css';
 
-function App() {
+const App = () => {
+  const [states, setState] = useState([]);
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    axios
+    .get(`http://cdn-api.co-vin.in/api/v2/admin/location/states?q=${value}`)
+    .then((response) => {
+      setState(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      <input type="type" value="" placeholder="Search" onChange={handleChange} />
+      <ul>
+        {states.map((state) => (
+          <li key={state.name}>{state.name}</li>
+        ))}
+      </ul>
+      </div>
   );
-}
+};
 
 export default App;
