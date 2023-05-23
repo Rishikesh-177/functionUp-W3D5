@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 import './App.css';
 
+
 const App = () => {
   const [states, setState] = useState([]);
 
   const handleChange = (event) => {
     const value = event.target.value;
     axios
-    .get(`http://cdn-api.co-vin.in/api/v2/admin/location/states?q=${value}`)
+    .get('http://cdn-api.co-vin.in/api/v2/admin/location/states')
     .then((response) => {
-      setState(response.data);
+      const filtreStates = response.data.states.filter((state) =>
+      state.state_name.toLowerCase().startsWith(value.toLowerCase())
+      );
+      setState(filtreStates);
     })
     .catch((error) => {
       console.log(error);
@@ -19,10 +23,14 @@ const App = () => {
 
   return (
     <div>
-      <input type="type" value="" placeholder="Search" onChange={handleChange} />
+      <input
+       type="text" value="" 
+       placeholder="Search"
+        onChange={handleChange}
+         />
       <ul>
         {states.map((state) => (
-          <li key={state.name}>{state.name}</li>
+          <li key={state.state_id}>{state.state_name}</li>
         ))}
       </ul>
       </div>
